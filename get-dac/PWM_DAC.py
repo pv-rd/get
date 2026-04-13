@@ -27,7 +27,7 @@ class PWM_DAC:
         
         
 
-dynamic_range = 3.3
+"""dynamic_range = 3.3
 pin = 12
 f = 200
 
@@ -43,4 +43,4 @@ if __name__ == "__main__":
             except ValueError:
                 print("Вы ввели не число. Попробуйте ещё раз\n")
     finally:
-        dac.deinit()
+        dac.deinit()"""
