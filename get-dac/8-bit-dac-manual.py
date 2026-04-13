@@ -1,7 +1,7 @@
 import RPi.GPIO as gp
+from dec2bin import *
 
 gp.setmode(gp.BCM)
-#leds = [16, 12, 25, 17, 27, 23, 22, 24]
 leds = [16, 20, 21, 25, 26, 17, 27, 22]
 gp.setup(leds, gp.OUT)
 gp.output(leds, 0)
@@ -17,8 +17,7 @@ def voltage_to_number(voltage):
     return int(voltage / dynamic_range * 255)
 
 def number_to_dac(number):
-    dec2bin = [int(el) for el in bin(number)[2:].zfill(8)]
-    gp.output(leds, dec2bin)
+    gp.output(leds, dec2bin(number))
 
 
 s_time = 0.2
