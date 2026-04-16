@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
         while True:
             try:
-                dac.set_voltage(dynamic_range * sg.get_sin_wave_amplitude(f, t))
+                dac.set_voltage(A * sg.get_sin_wave_amplitude(f, t))
                 sg.wait_for_sampling_period(F)
                 t += 1/F
             except ValueError:

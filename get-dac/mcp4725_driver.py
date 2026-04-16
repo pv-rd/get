@@ -33,13 +33,12 @@ class MCP4725:
             if self.verbose:
                 print(f"Число: {number}, отправленые по I2C данные: [0x{(self.address << 1):02X}, 0x{first_byte:02X}, 0x{second_byte:02X}]\n")
 
-    @staticmethod
-    def voltage_to_number(voltage):
-        if not (0.0 <= voltage <= dynamic_range):
+    def voltage_to_number(self, voltage):
+        if not (0.0 <= voltage <= self.dynamic_range):
             print(f"Напряжение выходит за динамический диапазон ЦАП (0.00 - {dynamic_range:.2f}) В")
             print("Устанавливаем 0.0 В")
             return 0
-        return int(voltage / dynamic_range * (2**12-1))
+        return int(voltage / self.dynamic_range * (2**12-1))
     
     def set_voltage(self, voltage):
         self.set_number(self.voltage_to_number(voltage))
@@ -49,7 +48,7 @@ class MCP4725:
         
         
 
-dynamic_range = 5
+"""dynamic_range = 5
 
 
 if __name__ == "__main__":
@@ -64,4 +63,4 @@ if __name__ == "__main__":
             except ValueError:
                 print("Вы ввели не число. Попробуйте ещё раз\n")
     finally:
-        dac.deinit()
+        dac.deinit()"""

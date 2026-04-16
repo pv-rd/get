@@ -3,7 +3,7 @@ import signal_generator as sg
 import time 
 import PWM_DAC as pwm
 
-A = 1.5
+A = 3
 f = 5
 F = 500
 
@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
         while True:
             try:
-                dac.set_voltage(dynamic_range * sg.get_sin_wave_amplitude(f, t))
+                dac.set_voltage(A* sg.get_sin_wave_amplitude(f, t))
                 sg.wait_for_sampling_period(F)
                 t += 1/F
             except ValueError:

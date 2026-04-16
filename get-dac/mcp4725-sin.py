@@ -1,23 +1,21 @@
-import r2r_dac as r2r
 import signal_generator as sg
 import time 
-import PWM_DAC as pwm
+import mcp4725_driver as mcp
 
 A = 1.5
 f = 5
 F = 500
 
-pin = 12
 dynamic_range = 3.3
 t = 0
 
 if __name__ == "__main__":
     try:
-        dac = pwm.PWM_DAC(pin, F, dynamic_range, True)
+        dac = mcp.MCP4725( dynamic_range, verbose=False)
 
         while True:
             try:
-                dac.set_voltage(dynamic_range * sg.get_sin_wave_amplitude(f, t))
+                dac.set_voltage(A * sg.get_sin_wave_amplitude(f, t))
                 sg.wait_for_sampling_period(F)
                 t += 1/F
             except ValueError:
