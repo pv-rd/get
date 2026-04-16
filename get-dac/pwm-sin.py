@@ -5,15 +5,15 @@ import PWM_DAC as pwm
 
 A = 1.5
 f = 5
-F = 1000
+F = 500
 
-leds = [16, 20, 21, 25, 26, 17, 27, 22]
+pin = 12
 dynamic_range = 3.3
 t = 0
 
 if __name__ == "__main__":
     try:
-        dac = r2r.R2R_DAC(leds, dynamic_range, True)
+        dac = pwm.PWM_DAC(pin, F, dynamic_range, True)
 
         while True:
             try:

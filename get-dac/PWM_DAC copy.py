@@ -24,6 +24,23 @@ class PWM_DAC:
 
         duty = voltage/self.dynamic_range
         self.pwm.ChangeDutyCycle(duty*100)
-             
+        
+        
 
-#dac = PWM_DAC(12, 500, dynamic_range, True)
+"""dynamic_range = 3.3
+pin = 12
+f = 200
+
+if __name__ == "__main__":
+    try:
+        dac = PWM_DAC(12, 500, dynamic_range, True)
+
+        while True:
+            try:
+                voltage = float(input("Введите напряжение в Вольтах: "))
+                
+                dac.set_voltage(voltage)
+            except ValueError:
+                print("Вы ввели не число. Попробуйте ещё раз\n")
+    finally:
+        dac.deinit()"""
