@@ -30,11 +30,11 @@ class PWM_DAC:
 
 
 if __name__ == "__main__":
-    dynamic_range = 3.3
+    dynamic_range = 3.333
     pin = 12
     f = 1000
     try:
-        dac = PWM_DAC(12, 500, dynamic_range, True)
+        dac = PWM_DAC(12, f, dynamic_range, True)
 
         while True:
             try:

@@ -45,7 +45,7 @@ class MCP4725:
 
 
 if __name__ == "__main__":
-    dynamic_range = 5
+    dynamic_range = 5.2
     try:
         dac = MCP4725(dynamic_range)
 
