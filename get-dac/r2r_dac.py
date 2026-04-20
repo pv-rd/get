@@ -27,3 +27,22 @@ class R2R_DAC:
     def set_voltage(self, voltage):
         self.set_number(self.voltage_to_number(voltage))
 
+
+
+
+if __name__ == "__main__":
+
+    leds = [16, 20, 21, 25, 26, 17, 27, 22]
+    dynamic_range = 3.3
+
+    try:
+        dac = R2R_DAC(leds, dynamic_range, True)
+
+        while True:
+            try:
+                voltage = float(input("Введите напряжение в Вольтах: "))
+                dac.set_voltage(voltage)
+            except ValueError:
+                print("Вы ввели не число. Попробуйте ещё раз\n")
+    finally:
+        dac.deinit()
