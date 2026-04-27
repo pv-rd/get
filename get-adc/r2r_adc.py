@@ -47,18 +47,17 @@ class R2R_ADC:
         gp.output(self.bits, 0)
         gp.cleanup()
 
-    #def number_to_dac(self, number):
-    #    gp.output(self.bits, [int(el) for el in bin(number)[2:].zfill(8)])
-
     def number_to_dac(self, number):
-        leds = [26, 20, 19, 16, 13, 12, 25, 11]
-        R2R_DAC(leds, self.dyn_range, True).set_voltage(number/255*self.dyn_range)
+        gp.output(self.bits, [int(el) for el in bin(number)[2:].zfill(8)])
+
+    #def number_to_dac(self, number):
+    #    leds = [26, 20, 19, 16, 13, 12, 25, 11]
+    #    R2R_DAC(leds, self.dyn_range, True).set_voltage(number/255*self.dyn_range)
 
     def seq(self):
         for val in range(256):
             self.number_to_dac(val)
             time.sleep(0.01)
-            print(gp.input(self.comp))
             if gp.input(self.comp):
                 return val
         return val
