@@ -6,18 +6,23 @@ A = 1.5
 f = 5
 F = 500
 
-dynamic_range = 3.3
+dynamic_range = 5
 t = 0
 
 if __name__ == "__main__":
     try:
         dac = mcp.MCP4725( dynamic_range, verbose=False)
-
+        duty = 0.0
+        v = 1
         while True:
             try:
-                dac.set_voltage(A * sg.get_sin_wave_amplitude(f, t))
-                sg.wait_for_sampling_period(F)
-                t += 1/F
+                while True:
+                    time.sleep(0.001)
+                    duty += v
+                    if duty >= 100.0 or duty <= 0.0:
+                        v  = -v
+
+                    dac.set_voltage(duty * dynamic_range / 150)
             except ValueError:
                 print("Вы ввели не число. Попробуйте ещё раз\n")
     finally:
